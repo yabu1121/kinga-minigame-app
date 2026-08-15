@@ -1,29 +1,39 @@
-# Create T3 App
+# Kinga!!
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+お正月のミニゲームアプリ。ポチ袋を連打してスコアを競い、その日のランキングに載ります。
 
-## What's next? How do I make an app with this?
+https://kinga-n43year.vercel.app/
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## 機能
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- ポチ袋連打のゲーム（`/game`）とリザルト表示（`/game/result`）
+- 当日分に絞ったランキング（`/ranking`, `/choice`）と TOP5 表示
+- スコアのシェア（`/game/share`）
+- 遊び方ページ（`/howto`）
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## 設計で考えたこと
 
-## Learn More
+- 「多くの人に気軽に触ってもらう」ことを狙い、ユーザー登録やログインを挟まず、開いたらすぐ遊べる構成にしました
+- ランキングを当日分に絞ることで、実際に遊んでいる人が見える／競える状態を作っています
+- スコアとクリック数は Zustand で保持し、リトライ時の状態管理を軽量に済ませています
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## 技術スタック
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+T3 Stack（create-t3-app）ベース。
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+| 領域 | 技術 |
+| --- | --- |
+| フレームワーク | Next.js (App Router) |
+| 型安全なAPI | tRPC + Zod |
+| DB / ORM | Supabase (PostgreSQL) + Drizzle ORM |
+| 状態管理 | Zustand |
+| スタイリング | Tailwind CSS |
+| デプロイ | Vercel |
 
-## How do I deploy this?
+## 開発
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+```sh
+npm install
+npm run db:push
+npm run dev
+```
